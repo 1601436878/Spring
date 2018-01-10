@@ -6,6 +6,7 @@
 ```
 
 - 其他javaBean
+
 	1. 一般方式
 ```
 <property name="favouriteBook" ref="book"></property>
