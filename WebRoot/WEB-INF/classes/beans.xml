@@ -20,4 +20,27 @@
 	
 	<!-- 配置事件 -->
 	<bean id="emailEvent" class="event.EmailNotifier"></bean>
+
+	<!-- 多种设值类型测试 -->	
+	<bean id="person" class="bean.Person">
+		<!-- 1. 对于基本类型及其包装类，可直接使用value指定值 -->
+		<property name="name" value="tom"></property>
+		<property name="age" value="20"></property>
+		<property name="height">
+			<value>1.81</value>
+		</property>
+		
+		<!-- 2. 配置合作者 bean，通过ref，将另一个bean作为参数传入。 -->
+		<!-- <property name="favouriteBook" ref="book"></property> -->
+		
+		<property name="favouriteBook">
+			<!-- 3. 注入嵌套bean，不能被Spring容器直接访问，只用于当前的bean的赋值，因此，可以不写id -->
+			<bean class="bean.Book">
+				<property name="bookName" value="追风筝的人"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- Person 中的setBook被自动装配，自动用id为book的bean作为参数 -->
+	<bean id="person_autoWire" class="bean.Person" autowire="byName"></bean>
 </beans>
