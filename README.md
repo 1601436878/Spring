@@ -7,17 +7,17 @@
 
 - 其他javaBean
 
-	1. 一般方式
+1.一般方式
 ```
 <property name="favouriteBook" ref="book"></property>
 ```
 
-	2. 自动装配
+2.自动装配
 ```
 <bean id="person_autoWire" class="bean.Person" autowire="byName"></bean>
 ```
 
-	3. 注入嵌套 
+3.注入嵌套 
 ```
 		<property name="favouriteBook">
 			<!-- 3. 注入嵌套bean，不能被Spring容器直接访问，只用于当前的bean的赋值，因此，可以不写id -->
