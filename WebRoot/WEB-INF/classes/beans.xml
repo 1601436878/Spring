@@ -109,6 +109,22 @@
 		</property>
 	</bean>
 	
+	<!-- 组合属性,bean中的成员必须要已经被创建  -->
+	<bean id="zuhe_book" class="bean.Book_zuhe">
+		<property name="publish.publisherName" value="zuheshuxing_publisherName"></property>
+	</bean>
+	
 	<!-- Person 中的setBook被自动装配，自动用id为book的bean作为参数 -->
 	<bean id="person_autoWire" class="bean.Person" autowire="byName"></bean>
+	
+	<!-- 配置静态工厂类 -->
+	<bean id="dog" class="factory.StaticFactory" factory-method="getBeing">
+		<constructor-arg value="dog"></constructor-arg>
+		<property name="message" value="dog_message"></property>
+	</bean>
+	<bean id="cat" class="factory.StaticFactory" factory-method="getBeing">
+		<constructor-arg value="cat"></constructor-arg>
+		<property name="message" value="cat_message"></property>
+	</bean>
+	
 </beans>

@@ -101,3 +101,115 @@
 		</property>
 	</bean>
 ```
+
+# 组合属性
+可以直接给Bean中的成员变量的属性赋值，但是成员变量必须已经被创建
+
+```
+	<!-- 组合属性,bean中的成员必须要已经被创建  -->
+	<bean id="zuhe_book" class="bean.Book_zuhe">
+		<property name="publish.publisherName" value="zuheshuxing_publisherName"></property>
+	</bean>
+```
+
+# 创建Bean的方式
+
+- 使用构造器创建
+- 使用静态工程类创建
+- 使用动态工厂类创建
+
+
+## 使用静态工厂类
+
+- 接口Being.java：
+```
+public interface Being {
+	public void testMessage();
+}
+```
+
+- 实现类 Cat.java 和 Dog.java：
+```
+package bean;
+
+/**
+ * 工厂类测试类
+ * @author twilight
+ *
+ */
+public class Cat implements Being {
+	private String message; 
+	
+	@Override
+	public void testMessage() {
+		// TODO Auto-generated method stub
+		System.out.println("Cat: "+message);
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+}
+
+
+package bean;
+
+/**
+ * 工厂类测试类
+ * @author twilight
+ *
+ */
+public class Dog implements Being {
+	private String message; 
+
+	@Override
+	public void testMessage() {
+		// TODO Auto-generated method stub
+			System.out.println("Dog: "+ message);
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+}
+
+```
+
+- 配置使用静态工厂类创建对象：
+```
+	<!-- 配置静态工厂类 -->
+	<bean id="dog" class="factory.StaticFactory" factory-method="getBeing">
+		<constructor-arg value="dog"></constructor-arg>
+		<property name="message" value="dog_message"></property>
+	</bean>
+
+	<bean id="cat" class="factory.StaticFactory" factory-method="getBeing">
+		<constructor-arg value="cat"></constructor-arg>
+		<property name="message" value="cat_message"></property>
+	</bean>
+```
+
+- 测试静态工厂类：
+```
+	/**
+	 * 测试静态工厂类
+	 */
+	public void getStaticFactoryBean(){
+		ApplicationContext app = new ClassPathXmlApplicationContext("beans.xml");
+		Dog dog = app.getBean("dog",Dog.class);
+		Cat cat = app.getBean("cat",Cat.class);
+		dog.testMessage();
+		cat.testMessage();
+	}
+
+
+结果如下：
+	Dog: dog_message
+	Cat: cat_message
+```
