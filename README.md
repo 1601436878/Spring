@@ -29,10 +29,11 @@
 
 - 集合类型
 集合类型一共4个标签 `<list />` , `<set />` , `<map />` , `<props />`
-	1.list： 集合、数组
-	2.set： Set 集合
-	3.map： Map 键值对
-	4.props： Properties 类型
+
+	1. list： 集合、数组
+	2. set： Set 集合
+	3. map： Map 键值对
+	4. props： Properties 类型
 
 ```
 	<!-- 4. 集合类型赋值 -->
