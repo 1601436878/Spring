@@ -3,6 +3,7 @@ package settervalue;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import bean.ListTest;
 import bean.Person;
 
 public class SetValue {
@@ -12,9 +13,14 @@ public class SetValue {
 	 */
 	public void setValueTest(){
 		ApplicationContext app = new ClassPathXmlApplicationContext("beans.xml");
-		Person one = app.getBean("person_autoWire",Person.class);
+		ListTest listTest = app.getBean("listTest",ListTest.class);
 		
-		System.out.println(one.getFavouriteBook());
+		System.out.println(listTest.getList_String());
+		System.out.println(listTest.getMap());
+		System.out.println(listTest.getMap_String_Publisher());
+		System.out.println(listTest.getProperties());
+		System.out.println(listTest.getSet_Publisher());
+		System.out.println(listTest.getStrings());
 	}
 	
 	
